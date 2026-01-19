@@ -1,7 +1,7 @@
 # VM Log Backup to Scality S3 (Using AWS CLI)
 
 This document explains how to **backup VM logs to Scality S3-compatible
-storage** using AWS CLI v2 on Ubuntu.\
+storage** using AWS CLI v2 on Ubuntu.
 It includes **common fixes**, **best practices**, and **cron
 scheduling**.
 
@@ -10,9 +10,9 @@ scheduling**.
 ## Requirements
 
 -   Scality S3 credentials
-    -   Access Key\
-    -   Secret Key\
-    -   Scality S3 Endpoint URL\
+    -   Access Key
+    -   Secret Key
+    -   Scality S3 Endpoint URL
 -   Ubuntu VM (20.04 / 22.04 recommended)
 -   Root or sudo access
 -   Internet access (or internal access to Scality endpoint)
@@ -46,9 +46,9 @@ aws --version
 aws configure --profile scality
 ```
 
-Enter: - **Access Key ID** → Scality access key\
-- **Secret Access Key** → Scality secret key\
-- **Default region name** → `us-east-1`\
+Enter: - **Access Key ID** → Scality access key
+- **Secret Access Key** → Scality secret key
+- **Default region name** → `us-east-1`
 - **Default output format** → `json`
 
 > Region is logical for Scality but must be explicitly set.
@@ -181,9 +181,9 @@ Run daily at **2 AM**:
 
 ### ❌ trailing checksum is not supported
 
-**Cause:** AWS CLI v2 checksum feature\
-**Fix:**\
-- `--checksum-algorithm none` OR\
+**Cause:** AWS CLI v2 checksum feature
+**Fix:**
+- `--checksum-algorithm none` OR
 - `checksum_mode = disabled` in AWS config
 
 ------------------------------------------------------------------------
@@ -200,15 +200,6 @@ Run daily at **2 AM**:
 **Cause:** Endpoint URL missing or wrong\
 **Fix:** Verify `endpoint_url` in `~/.aws/config`
 
-------------------------------------------------------------------------
-
-## Best Practices
-
--   Use **dedicated Scality IAM credentials**
--   Restrict bucket access
--   Monitor `/var/log/s3_backup.log`
--   Test restore periodically
--   Rotate old backups using lifecycle rules (if supported)
 
 ------------------------------------------------------------------------
 
@@ -219,5 +210,5 @@ backup solution** using AWS CLI.
 
 ------------------------------------------------------------------------
 
-**Author:** Anant Gadaili\
+**Author:** Anant Gadaili
 **Format:** Markdown (.md)
